@@ -31,7 +31,7 @@ function Navbar() {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    setIsProductsDropdownOpen(false); 
+    setIsProductsDropdownOpen(false);
   };
 
   const closeMobileMenu = () => {
@@ -60,7 +60,7 @@ function Navbar() {
           onMouseEnter={handleMouseEnterProducts}
           onMouseLeave={handleMouseLeaveProducts}
           onClick={(e) => {
-            if (window.innerWidth <= 768) { 
+            if (window.innerWidth <= 768) {
               e.preventDefault();
               setIsProductsDropdownOpen(!isProductsDropdownOpen);
             } else {
@@ -95,8 +95,9 @@ function Navbar() {
           <Link to="/Contacto" onClick={closeMobileMenu}>Contacto</Link>
         </li>
       </ul>
+
       <div className="navbar-cart">
-         <CartWidget />
+        <CartWidget />
       </div>
     </nav>
   );
