@@ -1,128 +1,248 @@
 .navbar {
-  background-color: #1B1B1B;
-  display: flex;
-  align-items: center;
-  padding: 0.3rem 1.5rem;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 1000;
-  gap: 30px;
+    background-color: #1B1B1B;
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 1.5rem;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    gap: 30px;
 }
 
 .navbar-logo-link {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-logo-link:focus,
 .navbar-logo-link:active {
-  outline: none;
-  box-shadow: none;
+    outline: none;
+    box-shadow: none;
 }
 
 .logo {
-  padding: 0.1em;
-  width: 120px;
-  height: auto;
-  will-change: filter;
-  transition: filter 300ms;
+    padding: 0.1em;
+    width: 120px;
+    height: auto;
+    will-change: filter;
+    transition: filter 300ms;
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 2em #ffb764aa);
+    filter: drop-shadow(0 0 2em #ffb764aa);
 }
 
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+    filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 .navbar ul {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  flex-grow: 0;
-  justify-content: flex-start;
-  margin-right: center;
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 0;
+    justify-content: flex-start;
+    margin-right: center;
 }
 
 .navbar-links li a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 0.85rem;
-  padding: 0.1rem 0.3rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 0.85rem;
+    padding: 0.1rem 0.3rem;
 }
 
 .navbar-links li a:hover {
-  text-decoration: #ccc;
-  color: #ccc;
+    text-decoration: #ccc;
+    color: #ccc;
 }
 
 
 .navbar ul li a:focus,
 .navbar ul li a:active {
-  outline: none;
-  box-shadow: none;
+    outline: none;
+    box-shadow: none;
 }
 
 .navbar-cart {
-  position: relative;
-  margin-right: 5rem;
+    position: relative;
+    margin-right: 5rem;
 }
 
 .cart-count {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  font-size: 12px;
-  border-radius: 50%;
-  padding: 2px 6px;
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 2px 6px;
 }
 
 
 .products-dropdown-container {
-  position: relative;
+    position: relative;
 }
 
 .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #333;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
-  z-index: 1000;
-  border-radius: 5px;
-  overflow: hidden; 
-  padding: 5px 0;
-  display: flex;
-  flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+    z-index: 1000;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .dropdown-item {
-  color: white;
-  padding: 10px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  font-weight: normal;
-  font-size: 0.85rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-weight: normal;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .dropdown-item:hover {
-  background-color: #575757;
-  color: #fff;
+    background-color: #575757;
+    color: #fff;
 }
 
 .nav-item-text {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+.hamburger-menu {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+@media (min-width: 769px) { /* Se aplica en pantallas con ancho de 769px o más */
+    .navbar-links {
+        display: flex; /* Muestra los enlaces en fila */
+        gap: 1.5rem; /* Espacio entre los enlaces */
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        flex-grow: 1; /* Permite que los enlaces ocupen el espacio disponible */
+        justify-content: flex-end; /* Alinea los enlaces a la derecha */
+        align-items: center; /* Centra los enlaces verticalmente */
+    }
+
+    .navbar-links li a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+        border-radius: 5px;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        display: block; /* Para que el padding se aplique correctamente */
+    }
+
+    .navbar-links li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ccc;
+    }
+
+    .navbar-cart {
+        margin-left: 2rem; /* Espacio a la izquierda del carrito */
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+        justify-content: space-between; /* Distribuye espacio entre logo, hamburguesa y carrito */
+        padding: 0.5rem 1rem;
+        height: auto;
+    }
+
+    .navbar-logo-link {
+        order: 1; /* Ordena el logo al principio */
+    }
+
+    .hamburger-menu {
+        display: block; /* Muestra el botón de hamburguesa en móvil */
+        order: 2; /* Coloca el botón de hamburguesa en el centro */
+    }
+
+    .navbar-cart {
+        order: 3; /* Coloca el carrito al final */
+        margin-left: auto; /* Empuja el carrito a la derecha */
+        margin-right: 0; /* Asegura que no haya margen extra */
+    }
+
+    .logo {
+        width: 100px; /* Reduce el tamaño del logo en móvil */
+    }
+
+    .navbar-links {
+        display: none; /* Oculta los enlaces de navegación por defecto en móvil */
+        flex-direction: column; /* Apila los enlaces verticalmente */
+        width: 100%; /* Ocupa todo el ancho */
+        background-color: #222; /* Fondo del menú desplegable */
+        position: absolute;
+        top: 100%; /* Se posiciona debajo de la navbar */
+        left: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        padding: 10px 0;
+        align-items: center; /* Centra los elementos */
+        gap: 0;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .navbar-links.active { /* Esta clase se añade/quita con JavaScript */
+        display: flex; /* Muestra el menú cuando está activo */
+    }
+
+    .navbar-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-links li a {
+        padding: 12px 0;
+        font-size: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .products-dropdown-container {
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static; /* Cambia a estático para que fluya dentro del menú móvil */
+        width: 100%;
+        box-shadow: none;
+        background-color: #444;
+        padding-left: 0;
+        border-radius: 0;
+    }
+
+    .dropdown-item {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
 }

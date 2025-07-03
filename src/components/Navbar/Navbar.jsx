@@ -7,37 +7,66 @@ import productosTecnologia from "../../dataproductos";
 
 function Navbar() {
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [uniqueBrands, setUniqueBrands] = useState([]);
 
   useEffect(() => {
-    const brands = [...new Set(productosTecnologia.map(p => p.marca))];
-    setUniqueBrands(brands);
+    if (productosTecnologia && Array.isArray(productosTecnologia)) {
+      const brands = [...new Set(productosTecnologia.map(p => p.marca))];
+      setUniqueBrands(brands);
+    }
   }, []);
 
   const handleMouseEnterProducts = () => {
-    setIsProductsDropdownOpen(true);
+    if (window.innerWidth > 768) {
+      setIsProductsDropdownOpen(true);
+    }
   };
 
   const handleMouseLeaveProducts = () => {
+    if (window.innerWidth > 768) {
+      setIsProductsDropdownOpen(false);
+    }
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsProductsDropdownOpen(false); 
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
     setIsProductsDropdownOpen(false);
   };
 
   return (
     <nav className="navbar">
       <div className="navbar-logo-link">
-        <Link to="/">
-          <img src={logo} alt="Logo" className="logo" />
+        <Link to="/" onClick={closeMobileMenu}>
+          <img src={logo} alt="Logo de Tienda Spider" className="logo" />
         </Link>
       </div>
 
-      <ul className="navbar-links">
+      <button className="hamburger-menu" onClick={toggleMobileMenu} aria-label="Abrir menú de navegación">
+        &#9776;
+      </button>
+
+      <ul className={`navbar-links ${isMobileMenuOpen ? 'active' : ''}`}>
         <li>
-          <Link to="/">Inicio</Link>
+          <Link to="/" onClick={closeMobileMenu}>Inicio</Link>
         </li>
         <li
           className="products-dropdown-container"
           onMouseEnter={handleMouseEnterProducts}
           onMouseLeave={handleMouseLeaveProducts}
+          onClick={(e) => {
+            if (window.innerWidth <= 768) { 
+              e.preventDefault();
+              setIsProductsDropdownOpen(!isProductsDropdownOpen);
+            } else {
+              closeMobileMenu();
+            }
+          }}
         >
           <Link to="/Productos" className="nav-item-text">Productos</Link>
           {isProductsDropdownOpen && (
@@ -45,7 +74,7 @@ function Navbar() {
               <Link
                 to="/productos"
                 className="dropdown-item"
-                onClick={() => setIsProductsDropdownOpen(false)}
+                onClick={closeMobileMenu}
               >
                 Todas las Marcas
               </Link>
@@ -54,7 +83,7 @@ function Navbar() {
                   key={brand}
                   to={`/category/${brand}`}
                   className="dropdown-item"
-                  onClick={() => setIsProductsDropdownOpen(false)}
+                  onClick={closeMobileMenu}
                 >
                   {brand}
                 </Link>
@@ -63,12 +92,11 @@ function Navbar() {
           )}
         </li>
         <li>
-          <Link to="/Contacto">Contacto</Link>
+          <Link to="/Contacto" onClick={closeMobileMenu}>Contacto</Link>
         </li>
       </ul>
-
       <div className="navbar-cart">
-        <CartWidget />
+         <CartWidget />
       </div>
     </nav>
   );
