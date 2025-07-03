@@ -5,17 +5,9 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+main {
+  width: 100%;
+  max-width: 100%;
 }
 
 @keyframes logo-spin {
@@ -33,10 +25,138 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
 
 .read-the-docs {
   color: #888;
+}
+
+.producto-imagen {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 23px;
+  padding: 20px;
+  justify-items: center;
+}
+
+.card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+ 
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.link-detalle {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.badge-nuevo {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  z-index: 1;
+}
+
+.card {
+  position: relative;
+}
+
+.btn-cart {
+  margin-top: 10px;
+  background-color: #2e7d32;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cart:hover {
+  background-color: #1b5e20;
+}
+
+/* seccion contactos */
+
+.contact-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.contact-container h1 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 2.5em;
+}
+
+.contact-container p {
+  color: #000000;
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.social-links {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  color: #555;
+  transition: color 0.3s ease;
+  font-size: 2em;
+  text-decoration: none;
+}
+
+.social-icon.facebook:hover {
+  color: #3b5998;
+}
+.social-icon.twitter:hover {
+  color: #1da1f2;
+}
+.social-icon.instagram:hover {
+  color: #e4405f;
+}
+.social-icon.whatsapp:hover {
+    color: #25D366;
 }

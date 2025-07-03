@@ -4,7 +4,7 @@ function Inicio() {
   return (
     <div>
       <h1>Bienvenidos a Tecno-Spider encuentre todos sus productos de tecnologia aqui.</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, similique id voluptatibus quas voluptate quia repellat labore repudiandae cumque exercitationem tempore eos debitis. In assumenda necessitatibus quibusdam mollitia quas temporibus?</p>
+      <p>En Tecno-Spider, somos apasionados por la tecnología y entendemos tu búsqueda de lo mejor para tu PC. Descubre un catálogo completo con las últimas novedades en procesadores, tarjetas gráficas, memorias RAM, almacenamiento, monitores, teclados, mouses y todos los accesorios esenciales. Construye tu setup ideal con la confianza y calidad que solo nosotros te podemos ofrecer.</p>
     </div>
   )
 }
