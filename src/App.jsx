@@ -1,6 +1,5 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Layout from './components/Layout';
 import Inicio from './components/Inicio';
 import Error from './components/Error';

@@ -3,19 +3,19 @@
     display: flex;
     align-items: center;
     padding: 0.3rem 1.5rem;
-    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
     z-index: 1000;
-    gap: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-logo-link {
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .navbar-logo-link:focus,
@@ -36,44 +36,10 @@
     filter: drop-shadow(0 0 2em #ffb764aa);
 }
 
-.logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-.navbar ul {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex-grow: 0;
-    justify-content: flex-start;
-    margin-right: center;
-}
-
-.navbar-links li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 0.85rem;
-    padding: 0.1rem 0.3rem;
-}
-
-.navbar-links li a:hover {
-    text-decoration: #ccc;
-    color: #ccc;
-}
-
-
-.navbar ul li a:focus,
-.navbar ul li a:active {
-    outline: none;
-    box-shadow: none;
-}
-
 .navbar-cart {
     position: relative;
-    margin-right: 5rem;
+    display: flex;
+    align-items: center;
 }
 
 .cart-count {
@@ -85,8 +51,10 @@
     font-size: 12px;
     border-radius: 50%;
     padding: 2px 6px;
+    min-width: 20px;
+    text-align: center;
+    z-index: 1001;
 }
-
 
 .products-dropdown-container {
     position: relative;
@@ -94,7 +62,7 @@
 
 .dropdown-menu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px);
     left: 0;
     background-color: #333;
     min-width: 160px;
@@ -135,18 +103,26 @@
     color: white;
     cursor: pointer;
     padding: 0.5rem;
+    z-index: 1002;
 }
 
-@media (min-width: 769px) { /* Se aplica en pantallas con ancho de 769px o más */
+@media (min-width: 769px) {
+    .navbar {
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .navbar-logo-link {
+        margin-right: 120px;
+    }
+
     .navbar-links {
-        display: flex; /* Muestra los enlaces en fila */
-        gap: 1.5rem; /* Espacio entre los enlaces */
+        display: flex;
+        gap: 1.5rem;
         list-style: none;
         margin: 0;
         padding: 0;
-        flex-grow: 1; /* Permite que los enlaces ocupen el espacio disponible */
-        justify-content: flex-end; /* Alinea los enlaces a la derecha */
-        align-items: center; /* Centra los enlaces verticalmente */
+        align-items: center;
     }
 
     .navbar-links li a {
@@ -157,7 +133,7 @@
         padding: 0.5rem 0.8rem;
         border-radius: 5px;
         transition: background-color 0.2s ease, color 0.2s ease;
-        display: block; /* Para que el padding se aplique correctamente */
+        display: block;
     }
 
     .navbar-links li a:hover {
@@ -165,55 +141,69 @@
         color: #ccc;
     }
 
+    .navbar-links li a:focus,
+    .navbar-links li a:active {
+        outline: none;
+        box-shadow: none;
+    }
+
     .navbar-cart {
-        margin-left: 2rem; /* Espacio a la izquierda del carrito */
+        margin-left: 20px;
+        margin-right: 0;
     }
 }
 
 @media (max-width: 768px) {
     .navbar {
-        flex-wrap: wrap; /* Permite que los elementos se envuelvan */
-        justify-content: space-between; /* Distribuye espacio entre logo, hamburguesa y carrito */
+        flex-wrap: wrap;
+        justify-content: space-between;
         padding: 0.5rem 1rem;
         height: auto;
     }
 
     .navbar-logo-link {
-        order: 1; /* Ordena el logo al principio */
+        order: 1;
+        margin-right: 0;
     }
 
     .hamburger-menu {
-        display: block; /* Muestra el botón de hamburguesa en móvil */
-        order: 2; /* Coloca el botón de hamburguesa en el centro */
+        display: block;
+        order: 2;
     }
 
     .navbar-cart {
-        order: 3; /* Coloca el carrito al final */
-        margin-left: auto; /* Empuja el carrito a la derecha */
-        margin-right: 0; /* Asegura que no haya margen extra */
+        order: 3;
+        margin-left: auto;
+        margin-right: 0;
     }
 
     .logo {
-        width: 100px; /* Reduce el tamaño del logo en móvil */
+        width: 100px;
     }
 
     .navbar-links {
-        display: none; /* Oculta los enlaces de navegación por defecto en móvil */
-        flex-direction: column; /* Apila los enlaces verticalmente */
-        width: 100%; /* Ocupa todo el ancho */
-        background-color: #222; /* Fondo del menú desplegable */
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #222;
         position: absolute;
-        top: 100%; /* Se posiciona debajo de la navbar */
+        top: 100%;
         left: 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         padding: 10px 0;
-        align-items: center; /* Centra los elementos */
+        align-items: center;
         gap: 0;
         border-radius: 0 0 5px 5px;
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        max-height: 0;
+        overflow: hidden;
     }
 
-    .navbar-links.active { /* Esta clase se añade/quita con JavaScript */
-        display: flex; /* Muestra el menú cuando está activo */
+    .navbar-links.active {
+        display: flex;
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px 0;
     }
 
     .navbar-links li {
@@ -233,7 +223,7 @@
     }
 
     .dropdown-menu {
-        position: static; /* Cambia a estático para que fluya dentro del menú móvil */
+        position: static;
         width: 100%;
         box-shadow: none;
         background-color: #444;
