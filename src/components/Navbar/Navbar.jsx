@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import CartWidget from "../CartWidget/CartWidget";
-import productosTecnologia from "../../dataproductos";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 function Navbar() {
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
@@ -11,10 +11,29 @@ function Navbar() {
   const [uniqueBrands, setUniqueBrands] = useState([]);
 
   useEffect(() => {
-    if (productosTecnologia && Array.isArray(productosTecnologia)) {
-      const brands = [...new Set(productosTecnologia.map(p => p.marca))];
-      setUniqueBrands(brands);
-    }
+    const fetchBrands = async () => {
+      try {
+        const db = getFirestore();
+        const productosRef = collection(db, "productos");
+        const snapshot = await getDocs(productosRef);
+        const productosList = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        // Sacar marcas únicas y filtrar marcas que no estén vacías o nulas
+        const brands = [...new Set(productosList
+          .map(p => p.marca)
+          .filter(marca => marca && marca.trim() !== "")
+        )];
+
+        setUniqueBrands(brands);
+      } catch (error) {
+        console.error("Error al obtener marcas de Firebase:", error);
+      }
+    };
+
+    fetchBrands();
   }, []);
 
   const handleMouseEnterProducts = () => {

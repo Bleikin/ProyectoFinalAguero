@@ -30,14 +30,14 @@ export const CartProvider = ({ children }) => {
         );
         Toast.fire({
           icon: 'info',
-          title: `Agregados ${quantity} más de ${product.nombre}`
+          title: `Agregados ${quantity} más de ${product.titulo}`
         });
         return carritoActualizado.filter(item => item.cantidad > 0);
       } else {
         if (quantity > 0) {
           Toast.fire({
             icon: 'success',
-            title: `${quantity} ${product.nombre} agregado(s) al carrito`
+            title: `${quantity} ${product.titulo} agregado(s) al carrito`
           });
           return [...prevCarrito, { ...product, cantidad: quantity }];
         }
@@ -52,7 +52,7 @@ export const CartProvider = ({ children }) => {
       if (removedItem) {
         Toast.fire({
           icon: 'warning',
-          title: `${removedItem.nombre} eliminado del carrito`
+          title: `${removedItem.titulo} eliminado del carrito`
         });
       }
       return prevCarrito.filter((item) => item.id !== productId);

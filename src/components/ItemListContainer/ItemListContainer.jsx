@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Producto from '../Producto';
-import productosTecnologia from '../../dataproductos';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([]);
@@ -10,32 +10,44 @@ const ItemListContainer = ({ greeting }) => {
 
   useEffect(() => {
     setLoading(true);
+    const db = getFirestore();
+    const productosRef = collection(db, "productos");
 
-    const fetchData = new Promise((resolve) => {
-      setTimeout(() => {
-        let filteredProducts = productosTecnologia;
+    const getFilteredProducts = async () => {
+      try {
+        const snapshot = await getDocs(productosRef);
+        let allProducts = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
         if (categoryId) {
-          const byBrand = productosTecnologia.filter(
-            (prod) => prod.marca && prod.marca.toLowerCase() === categoryId.toLowerCase()
+          const byBrand = allProducts.filter(
+            (prod) =>
+              prod.marca &&
+              prod.marca.toLowerCase() === categoryId.toLowerCase()
           );
 
           if (byBrand.length > 0) {
-            filteredProducts = byBrand;
+            allProducts = byBrand;
           } else {
-            filteredProducts = productosTecnologia.filter(
-              (prod) => prod.categorias && prod.categorias.toLowerCase() === categoryId.toLowerCase()
+            allProducts = allProducts.filter(
+              (prod) =>
+                prod.categorias &&
+                prod.categorias.toLowerCase() === categoryId.toLowerCase()
             );
           }
         }
-        resolve(filteredProducts);
-      }, 1000);
-    });
 
-    fetchData.then((data) => {
-      setProducts(data);
-      setLoading(false);
-    });
+        setProducts(allProducts);
+      } catch (error) {
+        console.error("Error al obtener productos de Firebase:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getFilteredProducts();
   }, [categoryId]);
 
   return (
